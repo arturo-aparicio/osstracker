@@ -31,9 +31,14 @@ You can see more about OSS Tracker from our meetup [video](https://www.youtube.c
 
 Deployment
 ==========
-For a sample deployment of the OSS Tracker using Terraform + Ansible, you can refer to [this project](https://github.com/RestComm/netflix-oss-tracker-infra).
+To deploy the project locally with Docker:
 
-[![Apache 2.0](https://img.shields.io/github/license/Netflix/osstracker.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+1. Starting from the root of the project, Run the build: `./gradlew shadowJar`
+2. Set the environment variables 'github_org' and 'github_oauth'
+    * You can generate the oauth token by [following these GitHub instructions](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
+3. Run 'docker-compose up --build -d'
+
+The project should now be running and reachable at [http://localhost:3000](http://localhost:3000) but it may take some time to show anything useful.
 
 LICENSE
 =======

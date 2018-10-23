@@ -44,11 +44,10 @@ services:
 
   osstracker-console:
     container_name: osstracker-console
-    build: osstracker-console
+    image: netflixoss/osstracker-console:latest
     ports:
       - "3000:3000"
     environment:
-      github_org: ${github_org}
       CASS_HOST: cassandra
       CASS_PORT: 9042
       ES_HOST: elasticsearch
@@ -103,7 +102,7 @@ services:
 
   osstracker-scraper-cassandra:
     container_name: osstracker-scraper-cassandra
-    build: osstracker-scraperapp
+    image:  netflixoss/osstracker-scraper:latest
     depends_on:
       - cassandra
       - elasticsearch
@@ -119,7 +118,7 @@ services:
 
   osstracker-scraper-elasticsearch:
     container_name: osstracker-scraper-elasticsearch
-    build: osstracker-scraperapp
+    image:  netflixoss/osstracker-scraper:latest
     depends_on:
       - cassandra
       - elasticsearch
