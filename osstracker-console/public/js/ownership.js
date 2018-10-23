@@ -1,5 +1,6 @@
 var users;
 var repos;
+var org;
 
 $(document).ready(function() {
   $.get('/repos', function(data) {
@@ -9,7 +10,12 @@ $(document).ready(function() {
     alert("problem with loading repos data");
   });
 
-  var substringMatcher = function(strs) {
+  $.get('/org', function(data) {
+    org = data
+  });
+
+
+    var substringMatcher = function(strs) {
     return function findMatches(q, cb) {
       var matches, substringRegex;
 
@@ -126,7 +132,7 @@ $(document).ready(function() {
 });
 
 function repoLinkFormatter(value, row) {
-  return '<a href="http://www.github.com/netflix/' + value + '">' + value + '</a>'; 
+    return '<a href="http://www.github.com/' + org + '/' + value + '">' + value + '</a>';
 }
 
 function editLinkFormatter(value, row) {

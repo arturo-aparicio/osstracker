@@ -1,5 +1,6 @@
 var esHost;
 var esPort;
+var org;
 
 $(document).ready(function(){
   var settings;
@@ -8,6 +9,10 @@ $(document).ready(function(){
     settings = json;
     esPort = settings.kibanaPort;
   });
+
+  $.get('/org', function(data) {
+    org = data
+   });
 
   $.get('/repos/stats', function(data) {
     data = data.filter(function (elem) {
@@ -103,7 +108,7 @@ $(document).ready(function(){
 });
 
 function repoLinkFormatter(value, row) {
-    return '<a href="http://www.github.com/netflix/' + value + '">' + value + '</a>';
+    return '<a href="http://www.github.com/' + org + '/' + value + '">' + value + '</a>';
 }
 
 function esStatsFormatter(value, row) {

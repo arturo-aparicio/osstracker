@@ -16,6 +16,7 @@ if (!CASS_HOST) {
 }
 var CASS_PORT = parseInt(process.env.CASS_PORT) || 7104;
 var ES_HOST = process.env.ES_HOST;
+var ORG = process.env.github_org || 'Netflix';
 if (!ES_HOST) {
     console.error("ES_HOST environment variable not defined");
     process.exit(1);
@@ -30,6 +31,11 @@ var esBaseUrl = 'http://' + ES_HOST + ':' + ES_PORT;
 var SELECT_ALL_FROM_REPO_ORGS = "SELECT * FROM repo_orgs";
 var INSERT_INTO_REPOS = "INSERT INTO repo_info (gh_repo_name, org_short, dev_lead_empid, mgr_lead_empid) VALUES (?, ?, ?, ?)";
 var SELECT_ALL_FROM_REPO_OWNERSHIP = "SELECT * FROM repo_info";
+
+// returns the organization name
+router.get('/org', function(req, res) {
+    res.send(ORG);
+});
 
 // returns a single string of what elastic search DNS name should
 // be used in direct links in the console
