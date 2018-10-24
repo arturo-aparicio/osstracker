@@ -31,14 +31,36 @@ You can see more about OSS Tracker from our meetup [video](https://www.youtube.c
 
 Deployment
 ==========
-To deploy the project locally with Docker:
+**To deploy the project with all components locally with Docker:**
 
+*NOTE: This is the best setup for testing*
+
+0. Copy docker-compose.local.yml to docker-compose.yml
 1. Starting from the root of the project, Run the build: `./gradlew shadowJar`
-2. Set the environment variables 'github_org' and 'github_oauth'
-    * You can generate the oauth token by [following these GitHub instructions](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
+2. Set the following environment variables:
+    * github_org - The organization whose data we will be importing
+    * github_oauth - You can generate the oauth token by [following these GitHub instructions](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
 3. Run 'docker-compose up --build -d'
 
 The project should now be running and reachable at [http://localhost:3000](http://localhost:3000) but it may take some time to show anything useful.
+
+**To deploy the project with elasticsearch externally and all other components locally with Docker:**
+
+0. Copy docker-compose.external.yml to docker-compose.yml
+1. Starting from the root of the project, Run the build: `./gradlew shadowJar`
+2. Set the following environment variables:
+    * github_org - The organization whose data we will be importing
+    * github_oauth - You can generate the oauth token by [following these GitHub instructions](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
+    * ELASTIC_PROXY_CREDS - (Optional) The credentials of the elastic server with the format *username:password*
+    * ELASTIC_PROXY_URL - The URL, including the port number, of the elasticsearch. For example: http://my-url.com:9200
+4. Run 'docker-compose up --build -d'
+
+The project should now be running and reachable at [http://localhost:3000](http://localhost:3000) but it may take some time to show anything useful.
+
+**To work with the original Netflix instructions:**
+
+0. Copy docker-compose.deployed.yml to docker-compose.yml
+1. Follow Netflix's instructions
 
 LICENSE
 =======

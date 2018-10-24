@@ -9,3 +9,4 @@ build/
 osstracker-scrapernetflixapp
 cassandra_data
 es_data
+docker-compose.yml
