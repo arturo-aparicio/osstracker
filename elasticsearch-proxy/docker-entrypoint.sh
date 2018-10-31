@@ -13,6 +13,8 @@ server {
 
     location / {
         proxy_read_timeout  900;
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
         proxy_pass ${ELASTIC_PROXY_URL};
     }
 }
@@ -31,6 +33,8 @@ server {
 
     location / {
         proxy_read_timeout  900;
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
         proxy_pass ${ELASTIC_PROXY_URL};
         proxy_set_header    Authorization "Basic ${CREDS}";
     }
